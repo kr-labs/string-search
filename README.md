@@ -1,4 +1,4 @@
-### String Search Script
+# String Search Script
 ## Objectives
 1) Find specific strings within a file being read using the built-in methods in Python.
 2) Utilize this script to skeleton other search methods that make searching simpler.

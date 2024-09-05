@@ -1,14 +1,30 @@
 def search_str(file_path, word):
-    # Opens file given by the user input
-    with open(file_path) as file:
+    # try block of code to verify that the file_path is a valid path to a file
+    try:
+        # open the file with read-only mode
+        file = open(file_path, "r")
         lines = file.readlines()
-        # Iterate through each line in the text
+        # used to find number of instances found of the word
+        instances = 0
+
+        print("In file located in: {}\n".format(file_path))
+        # iterate through each line of the file
         for line in lines:
-            # Finds the word specified by the user
             if line.find(word) != -1:
-                print("Line {}: {}".format(lines.index(line), line))
+                instances += 1
+                print("Line {}: {}".format(lines.index(line) + 1, line))
+        # check if there were any instances of the word foun in the file
+        if instances > 0:
+            print("\nNumber of instaces found: {}".format(instances))
+        else:
+            print("No number of instances found!")
+        file.close()
+    # if given file_path is not valid
+    except FileNotFoundError:
+        print("File does not exist.")
 
-user_input = input("Enter a word to search for in this text:\n")
-user_file = input("Enter the directory of your file (if in project, begin with ./):\n")
+user_file = input("Enter the file with directory (if in project directory, begin with ./):\n")
+user_input = input("Enter a word to search for in file:\n")
 
-search_str('example.txt', 'ERROR')
+# utilizing example information
+search_str("./example.txt", "ERROR")

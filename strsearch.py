@@ -1,12 +1,27 @@
+# Kevin R: STRING-SEARCH 2024
+
 def search_str(file_path, word):
-    with open(file_path) as file:
-        in_file = False
+    try:
+        file = open(file_path, "r")
         lines = file.readlines()
+        instances = 0
+
+        print("In file located in: {}\n".format(file_path))
         for line in lines:
             if line.find(word) != -1:
-                print("Line {}: {}".format(lines.index(line), line))
+                instances += 1
+                print("Line {}: {}".format(lines.index(line) + 1, line))
+        
+        if instances > 0:
+            print("\nNumber of instaces found: {}".format(instances))
+        else:
+            print("No number of instances found!")
+        file.close()
 
-user_input = input("Enter a word to search for in this text:\n")
-user_file = input("Enter the directory of your file (if in project, begin with ./):\n")
+    except FileNotFoundError:
+        print("File does not exist.")
+
+user_file = input("Enter the file with directory (if in project directory, begin with ./):\n")
+user_input = input("Enter a word to search for in file:\n")
 
 search_str(user_file, user_input)
